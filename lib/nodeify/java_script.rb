@@ -6,6 +6,7 @@ module Nodeify
     def evaluate(context, options, &blk)
       super
 
+      raise "fuck"
       file_path = file + '.tmp'
       File.open(file_path, 'w') { |f| f.puts @result }
       @result = `node -e "var browserify = require('browserify'), _ = process.stdout.write(browserify({ entry: '#{file_path}', require: { http: 'http-browserify' } }).bundle());"`
